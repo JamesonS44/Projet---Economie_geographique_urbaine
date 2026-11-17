@@ -29,6 +29,8 @@ Date de rendu, format du dossier et oral : inconnus, à demander (Q6 de `questio
     - communes (24), carreaux (13 384, population Filosofi)
     - resto_sirene (6 598 dont 2 268 actifs au 30/09/2026), resto_osm (1 292)
     - sites (736 : OSM, Mérimée, Muséofile, Département 44), frequentation_lieux (16 lieux, 2009-2020)
+- [x] Projet partagé sur GitHub (17/11) ; SIRENE, Mérimée et Filosofi (> 100 Mo) envoyés par WeTransfer, à mettre dans `data/raw/`
+- [x] Questions pour la réunion préparées (`questions_reunion.md`, en local chez Jameson)
 - [ ] Relire 01_donnees.R ensemble pour savoir l'expliquer
 - [ ] Placer les 5 grands équipements à la main, seulement si l'enseignante retient ce panel
 
