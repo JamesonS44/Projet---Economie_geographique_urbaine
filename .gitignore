@@ -1,0 +1,13 @@
+# fichiers trop lourds pour GitHub (> 100 Mo) : à retélécharger avec data/raw/DATES.txt
+data/raw/base_sirene.csv
+data/raw/merimee.csv
+data/raw/Filosofi2019_carreaux_200m_gpkg/
+
+# tout le reste du dossier n'est pas partagé
+/*
+!/data/
+!/docs/
+!/scripts/
+!/output/
+!/avancement.md
+!/.gitignore

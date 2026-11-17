@@ -1,0 +1,10 @@
+Téléchargé le 2026-11-10 : communes_nm.geojson, Filosofi2019_carreaux_200m_gpkg
+Téléchargé le 2026-11-17 :
+- base_sirene.csv : https://data.nantesmetropole.fr/api/explore/v2.1/catalog/datasets/244400404_base-sirene-entreprises-nantes-metropole/exports/csv?use_labels=true&delimiter=%3B (le fichier du 10/11 était tronqué)
+- merimee.csv (monuments historiques, France entière, séparateur |) : https://ministere-culture.s3.sbg.io.cloud.ovh.net/POP/merimee.csv
+- museofile.csv (musées de France) : https://ministere-culture.s3.sbg.io.cloud.ovh.net/POP/museofile.csv
+- sites_44.geojson (châteaux, monuments, musées 44 ; coordonnées dans latitude/longitude, géométrie vide) : https://data.loire-atlantique.fr/api/explore/v2.1/catalog/datasets/793866443_chateaux-monuments-musees-entreprises-et-artisanat-loire-atlantique/exports/geojson
+- frequentation_lieux_44.csv (entrées par lieu de visite 2009-2020) : https://data.loire-atlantique.fr/api/explore/v2.1/catalog/datasets/224400028_frequentation-des-lieux-de-visites-en-loire-atlantique/exports/csv?use_labels=true&delimiter=%3B
+- frequentation_equipements.csv (grands équipements NM 2007-2013) : https://data.nantesmetropole.fr/api/explore/v2.1/catalog/datasets/244400404_indicateur-activite-grands-equipements-nantes-metropole/exports/csv?use_labels=true&delimiter=%3B
+- osm_restaurants.osm, osm_sites.osm : Overpass, mêmes requêtes que 01_donnees.R (bbox -1.75 47.10 -1.40 47.35)
+- Filosofi2019_carreaux_200m_gpkg (téléchargé le 10/11) : INSEE, « Revenus, pauvreté et niveau de vie en 2019 - Données carroyées », carreaux de 200 m, format GeoPackage (insee.fr)
