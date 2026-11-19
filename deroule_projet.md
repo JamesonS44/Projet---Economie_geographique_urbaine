@@ -187,10 +187,29 @@ Autre correction : l'interprétation de la carte 2 parlait d'un « modèle avec 
 
 ---
 
-## 6. En cours et à venir
+## 6. Les consignes finales (19/11)
 
-- **Réunion avec l'enseignante (19/11)** : questions dans `questions_reunion.md`. Les réponses seront ajoutées ici, avec ce qu'elles changent.
+Lors de la séance du 19/11, l'enseignante a donné les consignes définitives (`docs/consignes_finales.pdf`). Elles ne changeront plus.
+
+- **Pas de dossier écrit.** Le projet est évalué sur les slides, le code et l'oral.
+- **Rendu le lundi 23/11/2026 à 23h59** : les slides en PDF (`JamesonSAUSSEREAU_NassimIKHELEF.pdf`), les scripts reproductibles et commentés, et les données.
+- **Oral le jeudi 26/11/2026, de 10h40 à 11h00, salle 304** : 15 min de présentation et 5 min de questions.
+- **Structure conseillée** : introduction (question, mécanismes, hypothèses), données (sources, variables géographiques, statistiques descriptives, carte), méthodologie (modèle, identification), résultats (coefficients, robustesse), discussion (limites, réponse à la question).
+- **Critères** : raisonnement économique, données et outils spatiaux, économétrie, avec une discussion des biais de **variables omises et de causalité inverse**, interprétation des coefficients, oral (chacun doit maîtriser tout le projet), et code exécutable du début à la fin qui reproduit tous les résultats des slides.
+
+### Ce que ça change pour nous
+- Tout ce qui était prévu pour le dossier (biais de variable omise, limites) passe dans les slides et la préparation de l'oral.
+- **La causalité inverse** devient un point à traiter explicitement. Les monuments anciens (Mérimée avant 1800) sont antérieurs aux restaurants actuels, mais pas toujours les sites OSM. Pour les restaurants voisins, la causalité va dans les deux sens par construction.
+- **Avec 4 jours avant le rendu et 15 minutes d'oral**, il faut décider si le panel est gardé ou seulement cité comme piste.
+- **Les données brutes pèsent 1,6 Go.** Il faut choisir ce qu'on rend.
+
+---
+
+## 7. En cours et à venir
+
+- **Décisions** : panel gardé ou non ; données à rendre ; mémoriaux ; date d'analyse SIRENE.
 - **Cartes restantes** : distance au site le plus proche (avec `carreaux_variables.gpkg`), puis résidus du modèle après le script 04.
 - **Carreaux de 500 m et panel** : à faire après la réunion.
-- **Modèles** (`04_modeles.R`) : les 4 colonnes emboîtées, le test entre Poisson et NB, les robustesses, l'indice de Moran sur les résidus.
-- **Dossier, slides, oral.**
+- **Modèles** (`04_modeles.R`, priorité) : les 4 colonnes emboîtées, le test entre Poisson et NB, les robustesses, l'indice de Moran sur les résidus.
+- **Reproductibilité** : chaîne 01 → 04 sur une session vierge et chez Nassim.
+- **Slides** (rendu le 23/11) **et oral** (26/11).
