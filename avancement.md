@@ -1,4 +1,4 @@
-# Avancement du projet (mis à jour le 17/11/2026)
+# Avancement du projet (mis à jour le 19/11/2026)
 
 Restaurants et sites touristiques, Nantes Métropole, carreaux de 200 m. Binôme : Jameson + Nassim.
 Date de rendu, format du dossier et oral : inconnus, à demander (Q6 de `questions_reunion.md`).
@@ -10,8 +10,8 @@ Date de rendu, format du dossier et oral : inconnus, à demander (Q6 de `questio
 | 1. Cadrage | Fait |
 | 2. Données | Fait |
 | 3. Décisions de méthode | En cours (réunion) |
-| 4. Variables spatiales (02) | À faire |
-| 5. Cartes (03) | À faire |
+| 4. Variables spatiales (02) | Fait en 200 m (reste 500 m et panel) |
+| 5. Cartes (03) | En cours (Nassim) |
 | 6. Modèles (04) | À faire |
 | 7. Dossier écrit | À faire |
 | 8. Slides | À faire |
@@ -40,14 +40,16 @@ Date de rendu, format du dossier et oral : inconnus, à demander (Q6 de `questio
 - [ ] Date d'analyse SIRENE (30/09/2026 provisoire)
 - [ ] Forme du panel : grands équipements 2007-2013 ou lieux 44 2009-2020, ou simple piste
 - [ ] Présentation avec/sans restaurants voisins
-- [ ] SIRENE en principal et OSM en robustesse, ou les deux au même niveau
-- [ ] Poisson ou binomiale négative (tester la surdispersion)
+- [x] SIRENE en principal, OSM en robustesse (19/11 : corrélation par carreau 0,86), à confirmer en réunion
+- [x] Binomiale négative attendue (19/11 : variance/moyenne ≈ 11), test formel dans 04
+- [x] Tous les carreaux en principal, carreaux habités en robustesse (19/11)
 
-## 4. Variables spatiales (`02_variables_spatiales.R`)
-- [ ] Nombre de restaurants par carreau (SIRENE actifs et OSM)
-- [ ] Distance du carreau au site le plus proche (km), version « tous » et version « monuments anciens »
-- [ ] Distance à la place du Commerce
-- [ ] Restaurants des 8 carreaux voisins (reine, sans le carreau)
+## 4. Variables spatiales (`02_variables_spatiales.R`, fait le 19/11)
+Résultat : `data/clean/carreaux_variables.gpkg` (13 384 carreaux, 12 colonnes).
+- [x] Nombre de restaurants par carreau : `n_sirene` (2 267), `n_osm` (1 292) ; 93 % de carreaux à 0, max 52 (Bouffay)
+- [x] Distance au site le plus proche (km) en 3 versions : `dist_site_tous` (médiane 1,01), `dist_site_sans_mem` (1,28), `dist_site_ancien` (2,58)
+- [x] Distance à la place du Commerce : `dist_commerce` (médiane 9,55 ; corrélée à 0,72 avec la distance au site)
+- [x] Restaurants des 8 carreaux voisins : `voisins_sirene`, `voisins_osm` (vérifié à la main ; corr. 0,68 avec `n_sirene`)
 - [ ] Même chose en carreaux de 500 m (robustesse)
 - [ ] Panel si retenu : ouvertures par carreau × année, fréquentation des lieux
 
