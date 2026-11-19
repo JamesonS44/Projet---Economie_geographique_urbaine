@@ -68,6 +68,8 @@ Réunion du 19/11 avec l'enseignante : voir `recap_reunion_enseignante.md`.
 - [x] Fréquentation des sites ajoutée en contrôle, en coupe transversale (15 lieux NM, 2009-2020) (19/11)
 - [x] Panel non estimé, cité comme piste dans les limites (19/11, manque de temps)
 - [ ] Forme de la variable de fréquentation (potentiel Σ Fréq/distance, distance au site le plus fréquenté, année retenue)
+- [ ] Colonnes où entrent les effets fixes commune et la fréquentation (toutes, ou une colonne (5))
+- [ ] SE clusterisés par commune avec seulement 24 clusters : garder en signalant la limite ?
 - [ ] Date d'analyse SIRENE (30/09/2026 gardé, non discuté en réunion)
 - [ ] Présentation avec et sans restaurants voisins (non discuté en réunion : colonne (4), interprétation prudente)
 - [ ] **Causalité inverse** (nouveau critère) : les restaurants peuvent-ils attirer ou créer des sites ? Les sites Mérimée anciens sont antérieurs aux restaurants actuels, mais pas les sites OSM (attractions, mémoriaux récents). Pour les voisins, la causalité inverse est évidente (chaque carreau est le voisin de ses voisins). À préparer pour l'oral
