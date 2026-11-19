@@ -1,8 +1,5 @@
-# ==============================================================================
-# Script 03 : Cartes descriptives de la zone d'étude (Nantes Métropole)
-# Auteur : Nassim Ikhelef
-# Objectif : Produire les 4 cartes exploratoires avant la réunion (19/11/2026)
-# ==============================================================================
+# 03_cartes.R
+# Cartes descriptives de Nantes Métropole (Nassim Ikhelef, 19/11/2026)
 
 library(sf)
 library(dplyr)
@@ -11,9 +8,7 @@ library(ggplot2)
 # Création du dossier de sortie si nécessaire
 dir.create("output/cartes", recursive = TRUE, showWarnings = FALSE)
 
-# ------------------------------------------------------------------------------
 # 0. Chargement des données propres (toutes en Lambert 93 - EPSG:2154)
-# ------------------------------------------------------------------------------
 carreaux     <- st_read("data/clean/carreaux.gpkg", quiet = TRUE)
 communes     <- st_read("data/clean/communes.gpkg", quiet = TRUE)
 resto_sirene <- st_read("data/clean/resto_sirene.gpkg", quiet = TRUE) %>%
@@ -33,9 +28,7 @@ theme_carte <- theme_void(base_size = 11) +
     plot.margin     = margin(10, 10, 10, 10)
   )
 
-# ------------------------------------------------------------------------------
 # Carte 1 : Zone d'étude (24 communes et grille de 200 m)
-# ------------------------------------------------------------------------------
 p1 <- ggplot() +
   geom_sf(data = carreaux, fill = "grey97", color = "grey85", linewidth = 0.08) +
   geom_sf(data = communes, fill = NA, color = "grey25", linewidth = 0.45) +
@@ -57,9 +50,7 @@ ggsave("output/cartes/01_zone_etude.png", p1, width = 9, height = 7.5, dpi = 300
 # avec une forte hétérogénéité de superficie entre le cœur urbain (Nantes, Rezé, Saint-Herblain)
 # et les communes périphériques plus étendues (Orvault, Carquefou, Vertou, Bouguenais).
 
-# ------------------------------------------------------------------------------
 # Carte 2 : Restaurants SIRENE vs OpenStreetMap (même échelle)
-# ------------------------------------------------------------------------------
 carreaux_comp <- bind_rows(
   carreaux %>%
     mutate(
@@ -107,13 +98,11 @@ p2 <- ggplot() +
 ggsave("output/cartes/02_restaurants_sirene_osm.png", p2, width = 12, height = 6.5, dpi = 300)
 
 # Interprétation Carte 2 :
-# Les deux sources convergent sur la forte polarisation dans l'hypercentre nantais et le long des axes structurants,
-# confirmant la pertinence d'un modèle de comptage avec excès de zéros. En revanche, OSM sous-couvre nettement
+# Les deux sources convergent sur la forte polarisation dans l'hypercentre nantais et le long des axes structurants.
+# La plupart des carreaux n'ont aucun restaurant (93 % en SIRENE), ce qui justifie un modèle de comptage. OSM sous-couvre nettement
 # les zones d'activités périphériques (Saint-Herblain, Carquefou, Vertou) et les centres-bourgs secondaires par rapport à SIRENE.
 
-# ------------------------------------------------------------------------------
 # Carte 3 : Sites touristiques et patrimoniaux — Mémoriaux vs autres sites (Q1)
-# ------------------------------------------------------------------------------
 sites_plot <- sites %>%
   mutate(
     categorie_q1 = ifelse(
@@ -157,14 +146,29 @@ p3 <- ggplot() +
 
 ggsave("output/cartes/03_sites_memoriaux.png", p3, width = 10, height = 7.5, dpi = 300)
 
-# Interprétation Carte 3 :
-# Les 396 mémoriaux (plaques, stèles, monuments aux morts) sont dispersés dans toutes les communes de la métropole,
-# alors que les 340 autres sites (Mérimée, musées, patrimoine départemental) se concentrent davantage au cœur de Nantes.
-# Conserver les mémoriaux réduit artificiellement la distance au site le plus proche en périphérie et brouille l'effet d'attractivité touristique.
+# Zoom sur le centre-ville (3 km autour de la place du Commerce), illisible sur la carte entière
+commerce <- st_transform(st_sfc(st_point(c(-1.5584, 47.2131)), crs = 4326), 2154)
+centre <- st_coordinates(commerce)
+p3_zoom <- p3 +
+  coord_sf(
+    xlim = centre[1] + c(-3000, 3000),
+    ylim = centre[2] + c(-3000, 3000),
+    datum = NA
+  ) +
+  labs(
+    title    = "Sites patrimoniaux et mémoriaux : zoom sur le centre de Nantes",
+    subtitle = "Carré de 6 km centré sur la place du Commerce"
+  )
 
-# ------------------------------------------------------------------------------
+ggsave("output/cartes/03b_sites_memoriaux_centre.png", p3_zoom, width = 10, height = 7.5, dpi = 300)
+
+# Interprétation Carte 3 :
+# Les 396 mémoriaux (plaques, stèles, monuments aux morts) sont plus centraux que les autres sites :
+# 84 % sont à Nantes (69 % pour les autres sites) et leur distance médiane à la place du Commerce est de 1,1 km
+# (2,3 km pour les autres sites OSM). Les retirer change donc peu la distance au site le plus proche
+# (médiane de 1,01 à 1,28 km, voir 02). La question des mémoriaux est surtout de savoir si ce sont des sites touristiques.
+
 # Carte 4 : Distribution de la population et carreaux imputés (Filosofi)
-# ------------------------------------------------------------------------------
 carreaux_pop <- carreaux %>%
   mutate(
     classe_pop = case_when(

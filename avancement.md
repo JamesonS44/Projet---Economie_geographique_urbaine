@@ -53,13 +53,18 @@ Résultat : `data/clean/carreaux_variables.gpkg` (13 384 carreaux, 12 colonnes).
 - [ ] Même chose en carreaux de 500 m (robustesse)
 - [ ] Panel si retenu : ouvertures par carreau × année, fréquentation des lieux
 
-## 5. Cartes (`03_cartes.R`)
-- [ ] Zone d'étude
-- [ ] Restaurants / densité par carreau
-- [ ] Distance au site le plus proche
-- [ ] Population
+## 5. Cartes (`03_cartes.R`, Nassim, 19/11)
+Script relancé le 19/11 : il tourne en 12 s, reproductible (`output/cartes/`).
+- [x] Zone d'étude (`01_zone_etude.png`)
+- [x] Restaurants SIRENE et OSM côte à côte (`02_restaurants_sirene_osm.png`)
+- [x] Sites avec ou sans mémoriaux (`03_sites_memoriaux.png`) et zoom sur le centre (`03b_sites_memoriaux_centre.png`)
+- [x] Population et carreaux imputés (`04_population.png`)
+- [ ] Distance au site le plus proche (à faire avec `carreaux_variables.gpkg`)
 - [ ] Résidus du modèle (après 04)
-- [ ] Une interprétation écrite par carte
+- [x] Une interprétation par carte (en commentaire dans le script), relue et corrigée le 19/11 :
+    - [x] Carte 3 : l'ancienne interprétation était contredite par les chiffres, elle est réécrite. Les mémoriaux sont plus centraux que les autres sites (84 % à Nantes contre 69 % ; médiane à 1,1 km de la place du Commerce contre 2,3 km pour les autres sites OSM). Ils ne raccourcissent donc pas la distance « en périphérie ».
+    - [x] Carte 2 : « modèle avec excès de zéros » retiré (non décidé : NB attendue, test dans 04)
+- [x] Style du script : bandeaux décoratifs enlevés
 
 ## 6. Modèles (`04_modeles.R`)
 - [ ] 4 colonnes emboîtées : (1) distance au site ; (2) + population ; (3) + distance place du Commerce ; (4) + restaurants voisins

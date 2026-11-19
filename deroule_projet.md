@@ -155,10 +155,42 @@ Corrélations de rang entre `n_sirene` et les distances : -0,23 (site), -0,26 (p
 
 ---
 
-## 5. En cours et à venir
+## 5. Les cartes descriptives (19/11), script `03_cartes.R`
+
+Réalisées par Nassim, en parallèle du script 02. Elles n'utilisent que les couches de `data/clean/`. Les PNG sont dans `output/cartes/`. Le script a été relancé le 19/11 pour vérifier qu'il est reproductible : il tourne en 12 s et redonne les mêmes images.
+
+| Carte | Fichier | Ce qu'elle montre | Utilité |
+| --- | --- | --- | --- |
+| Zone d'étude | `01_zone_etude.png` | 24 communes, grille de 13 384 carreaux de 200 m | Présenter le terrain |
+| Restaurants SIRENE et OSM | `02_restaurants_sirene_osm.png` | Restaurants par carreau, même échelle pour les deux sources | Q5 : choix de la source |
+| Sites, mémoriaux ou non | `03_sites_memoriaux.png` et zoom `03b_sites_memoriaux_centre.png` | 736 sites, couleur selon `memorial`, forme selon la source | Q1 : les mémoriaux |
+| Population | `04_population.png` | Population Filosofi, carreaux imputés entourés en orange | Contrôle de la demande locale, limite des données imputées |
+
+### Ce qu'on en retient
+- **Restaurants** : les deux sources montrent la même polarisation sur l'hypercentre et les grands axes, ce qui est cohérent avec la corrélation de 0,86. OSM sous-couvre les zones d'activités et les centres-bourgs de périphérie. C'est un argument de plus pour SIRENE en principal.
+- **Population** : elle est concentrée dans Nantes et les centres secondaires, et une grande partie de la périphérie est inhabitée. Les carreaux imputés sont surtout en zone peu dense. Le cœur de l'analyse (le centre) est donc peu touché par l'imputation.
+- **Sites** : les monuments Mérimée forment un noyau serré sur le centre historique et les quais, alors que les mémoriaux sont éparpillés dans tout le centre. Le zoom a été ajouté parce que, sur la carte entière, les points du centre se superposaient.
+
+### Une interprétation corrigée : les mémoriaux ne sont pas « en périphérie »
+La première interprétation de la carte 3 disait que les mémoriaux étaient dispersés dans toute la métropole et qu'ils raccourcissaient artificiellement la distance en périphérie. **Les chiffres disent l'inverse** :
+
+| | Part dans la commune de Nantes | Distance médiane à la place du Commerce |
+| --- | --- | --- |
+| Mémoriaux OSM (396) | 84 % | 1,1 km |
+| Autres sites (340) | 69 % | 2,3 km (sites OSM non mémoriaux) |
+
+Les mémoriaux sont donc **plus centraux** que les autres sites. Ça explique le résultat du script 02 : les retirer ne change presque pas la distance au site le plus proche (médiane de 1,01 à 1,28 km, corrélation de 0,98). La question des mémoriaux n'est pas un problème de variation de la distance. C'est une question de **définition** : une plaque commémorative est-elle un site touristique ?
+
+Leçon de méthode : une impression visuelle sur une carte chargée doit être vérifiée par un chiffre avant d'être écrite.
+
+Autre correction : l'interprétation de la carte 2 parlait d'un « modèle avec excès de zéros ». Ce choix n'est pas fait (la binomiale négative est attendue, et le test sera fait dans le script 04), donc la mention a été retirée.
+
+---
+
+## 6. En cours et à venir
 
 - **Réunion avec l'enseignante (19/11)** : questions dans `questions_reunion.md`. Les réponses seront ajoutées ici, avec ce qu'elles changent.
-- **Cartes descriptives** (Nassim, `03_cartes.R`) : zone d'étude, restaurants SIRENE et OSM, sites avec ou sans mémoriaux, population.
+- **Cartes restantes** : distance au site le plus proche (avec `carreaux_variables.gpkg`), puis résidus du modèle après le script 04.
 - **Carreaux de 500 m et panel** : à faire après la réunion.
 - **Modèles** (`04_modeles.R`) : les 4 colonnes emboîtées, le test entre Poisson et NB, les robustesses, l'indice de Moran sur les résidus.
 - **Dossier, slides, oral.**
