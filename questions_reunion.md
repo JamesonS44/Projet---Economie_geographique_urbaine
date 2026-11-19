@@ -41,9 +41,11 @@ Format attendu (rapport, longueur), date de rendu, soutenance orale ou non ?
 
 | Question | Réponse | Action |
 | --- | --- | --- |
-| Q1 Mémoriaux | | |
-| Q2 Restaurants voisins | | |
-| Q3 Panel | | |
-| Q4 Date SIRENE | | |
-| Q5 SIRENE / OSM | | |
-| Q6 Rendu | | |
+| Q1 Mémoriaux | Décidé par nous : exclus (pas de logique économique) | `dist_site_sans_mem` en principal |
+| Q2 Restaurants voisins | Pas traitée | On garde la colonne (4), interprétation prudente |
+| Q3 Panel | Pas traitée ; fréquentation conseillée en contrôle | Fréquentation en coupe, panel cité comme piste |
+| Q4 Date SIRENE | Pas traitée | On garde le 30/09/2026 |
+| Q5 SIRENE / OSM | Réglée | SIRENE principal, OSM robustesse |
+| Q6 Rendu | Réglée (consignes finales) | Slides + code + données le 23/11, oral le 26/11 |
+
+Détail de la réunion et des décisions : `recap_reunion_enseignante.md`.

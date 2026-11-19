@@ -109,7 +109,7 @@ Résultat : `data/clean/carreaux_variables.gpkg`, avec une ligne par carreau et 
 
 Même parmi les carreaux habités, 88 % n'ont aucun restaurant. Les restaurants sont très concentrés.
 
-**Décision 1 : binomiale négative attendue plutôt que Poisson.**
+**Décision 1 : binomiale négative attendue plutôt que Poisson** (remplacée après la réunion du 19/11 : `fepois()` en principal, NB en robustesse, voir partie 7).
 - *Résultat* : la variance est environ 11 fois plus grande que la moyenne (8 fois pour OSM).
 - *Raisonnement* : le Poisson suppose une variance égale à la moyenne. Ici la surdispersion est forte, parce que les restaurants se regroupent au lieu de se répartir au hasard. Une partie de cette surdispersion disparaîtra avec les variables explicatives, donc il faut un test sur le modèle estimé.
 - *Suite* : estimer les deux modèles dans le script 04 et trancher avec un test de surdispersion ou l'AIC.
@@ -121,7 +121,7 @@ Même parmi les carreaux habités, 88 % n'ont aucun restaurant. Les restaurants 
 **Décision 3 : SIRENE en spécification principale, OSM en robustesse.**
 - *Résultat* : les comptes SIRENE et OSM par carreau sont corrélés à 0,86.
 - *Raisonnement* : les deux sources montrent la même géographie, donc deux modèles « au même niveau » répéteraient la même chose. SIRENE est plus complet, administratif, daté, et permet un panel grâce aux dates d'ouverture et de fermeture. OSM est contributif et inégal selon les quartiers. Mais SIRENE contient des établissements sans salle (sièges, domiciliations), donc OSM en robustesse vérifie que ce biais ne change pas les résultats.
-- *Statut* : à confirmer avec l'enseignante (Q5).
+- *Statut* : confirmé.
 
 ### 4.2 Distance au site touristique le plus proche (la variable X)
 
@@ -205,11 +205,29 @@ Lors de la séance du 19/11, l'enseignante a donné les consignes définitives (
 
 ---
 
-## 7. En cours et à venir
+## 7. La réunion avec l'enseignante (19/11)
 
-- **Décisions** : panel gardé ou non ; données à rendre ; mémoriaux ; date d'analyse SIRENE.
+Détail dans `recap_reunion_enseignante.md`. Trois conseils, et nos décisions :
+
+**Modèle : `fepois()` en principal, binomiale négative en robustesse.** L'enseignante conseille `fepois()` (fixest), un Poisson estimé par pseudo-maximum de vraisemblance (PPML). Il reste valable avec de la surdispersion tant que la moyenne est bien spécifiée et que les écarts-types sont robustes. La surdispersion trouvée dans le script 02 (variance ≈ 11 fois la moyenne) ne rend donc plus la NB obligatoire : elle passe en robustesse. Cela remplace la décision 1 de la partie 4.
+
+**Effets fixes commune ajoutés.** Ils absorbent les différences entre communes et donc une partie de l'effet de centralité, qui est le principal facteur de confusion entre sites et restaurants.
+
+**Carreaux : on garde tous les carreaux en principal.** L'enseignante conseillait d'exclure l'eau, les forêts, les champs et les carreaux sans population. On maintient la décision 2 de la partie 4 : les carreaux sans population ne sont pas que de l'eau ou des forêts, ce sont aussi des zones d'affaires et commerciales, où se trouvent 243 restaurants (11 %). Les carreaux habités restent en robustesse.
+
+**Fréquentation des sites ajoutée en contrôle, en coupe transversale.** Pour distinguer « près d'un site » et « près d'autres restaurants », l'enseignante conseille d'utiliser la fréquentation des sites, en plus de la distance. Faute de temps, on le fait en coupe transversale avec les 15 lieux de visite de NM (entrées 2009-2020, avec coordonnées). Le panel n'est pas estimé : il sera cité comme piste. Limites : seulement 15 lieux, et la fréquentation est elle-même en partie causée par les restaurants (causalité inverse).
+
+**Mémoriaux exclus des sites.** Une plaque ou une stèle n'attire pas de clientèle : elles n'ont pas de logique économique. La distance principale devient `dist_site_sans_mem` (340 sites). Ça change peu les chiffres (corrélation de 0,98 avec la version complète, voir 4.2).
+
+**Non traités en réunion** (on garde nos choix) : restaurants voisins en colonne (4) avec une interprétation prudente ; date d'analyse SIRENE au 30/09/2026.
+
+---
+
+## 8. En cours et à venir
+
+- **Décisions** : forme de la variable de fréquentation ; colonnes où entrent fréquentation et effets fixes ; données à rendre.
 - **Cartes restantes** : distance au site le plus proche (avec `carreaux_variables.gpkg`), puis résidus du modèle après le script 04.
-- **Carreaux de 500 m et panel** : à faire après la réunion.
-- **Modèles** (`04_modeles.R`, priorité) : les 4 colonnes emboîtées, le test entre Poisson et NB, les robustesses, l'indice de Moran sur les résidus.
+- **Carreaux de 500 m** : robustesse.
+- **Modèles** (`04_modeles.R`, priorité) : les 4 colonnes emboîtées avec `fepois()`, fréquentation et effets fixes commune, les robustesses (NB, 500 m, sites anciens, carreaux habités, OSM), l'indice de Moran sur les résidus.
 - **Reproductibilité** : chaîne 01 → 04 sur une session vierge et chez Nassim.
 - **Slides** (rendu le 23/11) **et oral** (26/11).

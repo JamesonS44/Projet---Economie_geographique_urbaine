@@ -59,13 +59,17 @@ Il reste 4 jours avant le rendu, donc il faut prioriser : modèles (04) d'abord,
 - [ ] Placer les 5 grands équipements à la main, seulement si le panel est gardé
 
 ## 3. Décisions de méthode
+Réunion du 19/11 avec l'enseignante : voir `recap_reunion_enseignante.md`.
 - [x] SIRENE en principal, OSM en robustesse (19/11 : corrélation par carreau 0,86)
-- [x] Binomiale négative attendue (19/11 : variance/moyenne ≈ 11), test formel dans 04
-- [x] Tous les carreaux en principal, carreaux habités en robustesse (19/11)
-- [ ] Mémoriaux OSM : tous, exclus, ou en robustesse. Question de définition plutôt que statistique (19/11 : la distance change peu sans eux)
-- [ ] Date d'analyse SIRENE (30/09/2026 provisoire)
-- [ ] **Panel : le garder ou non, vu le rendu dans 4 jours et une présentation de 15 min** (grands équipements 2007-2013, lieux 44 2009-2020, ou simple piste citée dans les limites)
-- [ ] Présentation avec et sans restaurants voisins
+- [x] Modèle : `fepois()` (PPML, fixest) en principal, binomiale négative en robustesse (réunion 19/11)
+- [x] Effets fixes commune ajoutés (contrôlent une partie de la centralité) (19/11)
+- [x] Tous les carreaux en principal, carreaux habités en robustesse (19/11, maintenu après la réunion : les carreaux sans population incluent des zones d'affaires)
+- [x] Mémoriaux OSM exclus des sites (pas de logique économique) : `dist_site_sans_mem` en principal (19/11)
+- [x] Fréquentation des sites ajoutée en contrôle, en coupe transversale (15 lieux NM, 2009-2020) (19/11)
+- [x] Panel non estimé, cité comme piste dans les limites (19/11, manque de temps)
+- [ ] Forme de la variable de fréquentation (potentiel Σ Fréq/distance, distance au site le plus fréquenté, année retenue)
+- [ ] Date d'analyse SIRENE (30/09/2026 gardé, non discuté en réunion)
+- [ ] Présentation avec et sans restaurants voisins (non discuté en réunion : colonne (4), interprétation prudente)
 - [ ] **Causalité inverse** (nouveau critère) : les restaurants peuvent-ils attirer ou créer des sites ? Les sites Mérimée anciens sont antérieurs aux restaurants actuels, mais pas les sites OSM (attractions, mémoriaux récents). Pour les voisins, la causalité inverse est évidente (chaque carreau est le voisin de ses voisins). À préparer pour l'oral
 
 ## 4. Variables spatiales (`02_variables_spatiales.R`, fait le 19/11)
@@ -75,7 +79,7 @@ Résultat : `data/clean/carreaux_variables.gpkg` (13 384 carreaux, 12 colonnes).
 - [x] Distance à la place du Commerce : `dist_commerce` (médiane 9,55 ; corrélée à 0,72 avec la distance au site)
 - [x] Restaurants des 8 carreaux voisins : `voisins_sirene`, `voisins_osm` (vérifié à la main ; corr. 0,68 avec `n_sirene`)
 - [ ] Même chose en carreaux de 500 m (robustesse)
-- [ ] Panel, seulement s'il est gardé : ouvertures par carreau × année, fréquentation des lieux
+- [ ] Variable de fréquentation des sites par carreau (coupe transversale)
 - [ ] Tableau de statistiques descriptives (demandé dans la partie « Données » des slides)
 
 ## 5. Cartes (`03_cartes.R`, Nassim, 19/11)
@@ -90,12 +94,10 @@ Script relancé le 19/11 : il tourne en 12 s, reproductible (`output/cartes/`). 
 - [ ] Résidus du modèle (après 04)
 
 ## 6. Modèles (`04_modeles.R`), priorité
-- [ ] 4 colonnes emboîtées : (1) distance au site ; (2) + population ; (3) + distance place du Commerce ; (4) + restaurants voisins
-- [ ] Test de surdispersion, choix Poisson ou NB
+- [ ] 4 colonnes emboîtées avec `fepois()` : (1) distance au site ; (2) + population ; (3) + distance place du Commerce ; (4) + restaurants voisins. Ajouter fréquentation et effets fixes commune (colonnes à fixer)
 - [ ] Interprétation des coefficients (en IRR : effet de 1 km de plus en %)
-- [ ] Robustesse : 500 m ; sites anciens ; sans mémoriaux ; carreaux habités ; SE clusterisés par commune ; OSM au lieu de SIRENE
+- [ ] Robustesse : binomiale négative ; 500 m ; sites anciens ; carreaux habités ; OSM au lieu de SIRENE ; SE clusterisés par commune
 - [ ] Moran sur les résidus
-- [ ] Panel léger, seulement s'il est gardé
 - [ ] Tableaux exportés dans `output/tableaux/` (ce sont eux qui iront dans les slides)
 
 ## 7. Code et reproductibilité
@@ -109,9 +111,9 @@ Script relancé le 19/11 : il tourne en 12 s, reproductible (`output/cartes/`). 
 Structure conseillée par les consignes :
 - [ ] 1. Introduction : contexte, question de recherche, mécanismes économiques, hypothèses H1 à H3
 - [ ] 2. Données : sources, construction des variables géographiques, statistiques descriptives, carte(s)
-- [ ] 3. Méthodologie : modèle (NB), justification des variables, stratégie d'identification ; biais de variable omise (sens du biais pour chaque contrôle, effet de Z sur Y × lien Z–X) et causalité inverse
+- [ ] 3. Méthodologie : modèle (`fepois`, NB en robustesse), justification des variables, stratégie d'identification ; biais de variable omise (sens du biais pour chaque contrôle, effet de Z sur Y × lien Z–X) et causalité inverse
 - [ ] 4. Résultats : tableau des 4 colonnes, interprétation des coefficients, robustesse
-- [ ] 5. Discussion et conclusion : limites (voisins endogènes et médiateurs, distance ≠ fréquentation, corrélation spatiale des erreurs ≠ biais, Filosofi imputé, MAUP) et réponse à la question
+- [ ] 5. Discussion et conclusion : limites (voisins endogènes et médiateurs, fréquentation sur 15 lieux seulement et elle-même endogène, panel cité comme piste, corrélation spatiale des erreurs ≠ biais, Filosofi imputé, MAUP) et réponse à la question
 - [ ] Choix des 2-3 cartes et du tableau principal
 - [ ] Mise en forme, export PDF au bon nom
 
