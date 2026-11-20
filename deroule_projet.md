@@ -223,11 +223,27 @@ Détail dans `recap_reunion_enseignante.md`. Trois conseils, et nos décisions :
 
 ---
 
-## 8. En cours et à venir
+## 8. Les modèles (20/11), scripts `04_modeles.R` et `05_robustesse_500m.R`
 
-- **Décisions** : forme de la variable de fréquentation ; colonnes où entrent fréquentation et effets fixes ; données à rendre.
-- **Cartes restantes** : distance au site le plus proche (avec `carreaux_variables.gpkg`), puis résidus du modèle après le script 04.
-- **Carreaux de 500 m** : robustesse.
-- **Modèles** (`04_modeles.R`, priorité) : les 4 colonnes emboîtées avec `fepois()`, fréquentation et effets fixes commune, les robustesses (NB, 500 m, sites anciens, carreaux habités, OSM), l'indice de Moran sur les résidus.
-- **Reproductibilité** : chaîne 01 → 04 sur une session vierge et chez Nassim.
-- **Slides** (rendu le 23/11) **et oral** (26/11).
+Résultats complets et interprétation dans `interpretation_resultats.md`. Ici, seulement les choix et leurs raisons.
+
+**Fréquentation : potentiel, moyenne 2009-2019, sans nouvelle source.** On a cherché d'autres sources de fréquentation (Ministère de la Culture, bilans touristiques, téléphonie), mais nos données du Département 44 sont déjà des entrées réelles, et le musée d'arts y figure. La fréquentation mesure un lieu, alors que le modèle compte des restaurants par carreau : il faut relier les deux par la distance. D'où un potentiel = somme des entrées / distance. Moyenne 2009-2019 pour éviter le Covid ; années à 0 (lieu fermé) exclues ; cour du château seule (elle compte déjà les visiteurs du musée).
+
+**Effets fixes commune et fréquentation en colonne (5).** On garde les 4 colonnes prévues et on voit ce que ces deux ajouts changent.
+
+**Erreurs-types de Conley (1 km).** Adaptées à des carreaux proches les uns des autres ; avec seulement 24 communes, le cluster par commune est fragile. Le cluster et Conley à 2 km donnent les mêmes conclusions.
+
+**Distance au site en log.** Elle s'ajuste nettement mieux que la distance en km (BIC 8 884 contre 8 957) : l'effet d'un site joue sur les premières centaines de mètres. Lecture : quand la distance double, il y a 25 % de restaurants en moins (colonne 4).
+
+**Adresses SIRENE empilées retirées.** La carte des résidus a montré que les plus gros écarts venaient de carreaux où tous les restaurants étaient au même point GPS (jusqu'à 47 établissements, surtout de la restauration rapide créée en 2024-2026). Ce sont des adresses de domiciliation, pas de vrais restaurants. On retire les points à 5 restaurants ou plus : 18 points, 186 restaurants (8 %). Il en reste 2 082. L'effet de la distance devient un peu plus fort, et les conclusions ne changent pas.
+
+**Ce qu'on trouve.** La proximité des sites est associée à plus de restaurants dans toutes les spécifications, y compris avec les monuments anciens (argument contre la causalité inverse) et en carreaux de 500 m (effet plus faible, car un grand carreau dilue un effet très local). Les restaurants voisins ont un effet fort en Poisson, mais pas en binomiale négative, et il n'est pas causal. Ajouter les voisins fait baisser l'effet des sites de 40 % sans le faire disparaître (H3 partielle). Le potentiel de fréquentation n'est pas significatif.
+
+---
+
+## 9. À venir
+
+- **Slides** (rendu le lundi 23/11 à 23h59) : 5 parties des consignes, à partir de `interpretation_resultats.md`.
+- **Reproductibilité** : chaîne 01 → 05 sur une session R vierge et chez Nassim.
+- **Données à rendre** : `data/raw` pèse 1,6 Go.
+- **Oral** (26/11) : chacun doit maîtriser tout le projet.
