@@ -1,0 +1,37 @@
+                           model 1            model 2             model 3
+Dependent Var.:           n_sirene           n_sirene            n_sirene
+                                                                         
+Constant        -2.344*** (0.1281) -2.560*** (0.1154)   -0.5412* (0.2599)
+log_dist        -1.176*** (0.1339) -1.084*** (0.0885) -0.6920*** (0.0489)
+pop_centaines                      0.2146*** (0.0265)  0.1488*** (0.0239)
+dist_commerce                                         -0.2758*** (0.0403)
+voisins_sirene                                                           
+potentiel                                                                
+Fixed-Effects:  ------------------ ------------------ -------------------
+commune                         No                 No                  No
+_______________ __________________ __________________ ___________________
+S.E. type             Conley (1km)       Conley (1km)        Conley (1km)
+Observations                13,384             13,384              13,384
+Squared Cor.               0.08952            0.11571             0.29691
+Pseudo R2                  0.25328            0.32952             0.41178
+BIC                       11,946.1           10,737.9             9,433.5
+
+                            model 4             model 5
+Dependent Var.:            n_sirene            n_sirene
+                                                       
+Constant          -0.6078* (0.2433)                    
+log_dist        -0.4135*** (0.0607) -0.3229*** (0.0693)
+pop_centaines    0.1364*** (0.0221)  0.1282*** (0.0215)
+dist_commerce   -0.2520*** (0.0338) -0.3414*** (0.0555)
+voisins_sirene   0.0114*** (0.0010)  0.0109*** (0.0012)
+potentiel                               0.0016 (0.0014)
+Fixed-Effects:  ------------------- -------------------
+commune                          No                 Yes
+_______________ ___________________ ___________________
+S.E. type              Conley (1km)        Conley (1km)
+Observations                 13,384              13,384
+Squared Cor.                0.56164             0.58147
+Pseudo R2                   0.44680             0.45696
+BIC                         8,883.7             8,949.4
+---
+Signif. codes: 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1

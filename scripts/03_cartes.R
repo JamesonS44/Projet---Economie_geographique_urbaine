@@ -13,6 +13,9 @@ carreaux     <- st_read("data/clean/carreaux.gpkg", quiet = TRUE)
 communes     <- st_read("data/clean/communes.gpkg", quiet = TRUE)
 resto_sirene <- st_read("data/clean/resto_sirene.gpkg", quiet = TRUE) %>%
   filter(actif == TRUE) # 2 268 établissements actifs
+# Comme dans 02 : on retire les adresses empilées (5 restaurants ou plus au même point)
+nb_meme_point <- table(resto_sirene$geo)
+resto_sirene <- filter(resto_sirene, geo %in% names(nb_meme_point)[nb_meme_point < 5]) # 2 082
 resto_osm    <- st_read("data/clean/resto_osm.gpkg", quiet = TRUE) # 1 292 points
 sites        <- st_read("data/clean/sites.gpkg", quiet = TRUE)     # 736 sites
 
@@ -55,7 +58,7 @@ carreaux_comp <- bind_rows(
   carreaux %>%
     mutate(
       n_restos = lengths(st_intersects(., resto_sirene)),
-      source   = "SIRENE actifs (n = 2 268)"
+      source   = "SIRENE actifs (n = 2 082)"
     ),
   carreaux %>%
     mutate(
@@ -218,3 +221,20 @@ ggsave("output/cartes/04_population.png", p4, width = 9.5, height = 7.5, dpi = 3
 # La population se concentre dans la couronne centrale nantaise et les centralités secondaires, tandis qu'une large part
 # des carreaux périphériques reste inhabitée (espaces agricoles, naturels ou zones d'activités).
 # Les carreaux imputés (contour orange) concernent principalement les zones peu denses où le secret statistique s'applique.
+# Carte 5 : Distance au site touristique le plus proche (sans mémoriaux)
+carreaux_var <- st_read("data/clean/carreaux_variables.gpkg", quiet = TRUE)
+
+p5 <- ggplot() +
+  geom_sf(data = carreaux_var, aes(fill = dist_site_sans_mem), color = NA) +
+  geom_sf(data = communes, fill = NA, color = "grey25", linewidth = 0.35) +
+  geom_sf(data = filter(sites, !memorial), size = 0.4, color = "#E6550D") +
+  scale_fill_viridis_c(name = "Distance (km)", option = "mako", direction = -1,
+                       limits = c(0, 5), oob = scales::squish) +
+  labs(
+    title    = "Distance au site touristique le plus proche (grille 200 m)",
+    subtitle = "Points orange : sites touristiques hors mémoriaux ; échelle coupée à 5 km",
+    caption  = "Source : OSM, Mérimée, Muséofile, Département 44 — Projection : Lambert 93 (EPSG:2154)"
+  ) +
+  theme_carte
+
+ggsave("output/cartes/05_distance_site.png", p5, width = 9, height = 7.5, dpi = 300)

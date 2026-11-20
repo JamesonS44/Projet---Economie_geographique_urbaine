@@ -1,0 +1,67 @@
+                               model 1             model 2             model 3
+                             Principal                  NB       Sites anciens
+Dependent Var.:               n_sirene            n_sirene            n_sirene
+                                                                              
+Constant             -0.6078* (0.2433)  -1.550*** (0.2951)    -0.2907 (0.2345)
+log_dist           -0.4135*** (0.0607)  -0.3185** (0.1017)                    
+pop_centaines       0.1364*** (0.0221)  0.3889*** (0.0616)  0.1359*** (0.0223)
+dist_commerce      -0.2520*** (0.0338) -0.1635*** (0.0290) -0.2575*** (0.0365)
+voisins_sirene      0.0114*** (0.0010)     0.0311 (0.0322)  0.0111*** (0.0011)
+log_dist_ancien                                            -0.3691*** (0.0650)
+log_dist_tous                                                                 
+voisins_osm                                                                   
+dist_site_sans_mem                                                            
+__________________ ___________________ ___________________ ___________________
+Family                         Poisson           Neg. Bin.             Poisson
+S.E. type                 Conley (1km)        Conley (1km)        Conley (1km)
+Observations                    13,384              13,384              13,384
+Squared Cor.                   0.56164             0.02146             0.56115
+Pseudo R2                      0.44680             0.18225             0.44199
+BIC                            8,883.7             7,479.5             8,960.5
+Over-dispersion                     --             0.25212                  --
+
+                               model 4             model 5             model 6
+                       Avec mémoriaux            Habités                 OSM
+Dependent Var.:               n_sirene            n_sirene               n_osm
+                                                                              
+Constant            -1.040*** (0.2927)   -0.4976. (0.2619)  -0.8107** (0.2730)
+log_dist                               -0.4149*** (0.0578) -0.4109*** (0.0858)
+pop_centaines       0.1345*** (0.0225)  0.1140*** (0.0205)  0.1068*** (0.0242)
+dist_commerce      -0.2165*** (0.0360) -0.2179*** (0.0366) -0.3061*** (0.0394)
+voisins_sirene      0.0122*** (0.0009)  0.0113*** (0.0010)                    
+log_dist_ancien                                                               
+log_dist_tous      -0.4662*** (0.0759)                                        
+voisins_osm                                                 0.0167*** (0.0016)
+dist_site_sans_mem                                                            
+__________________ ___________________ ___________________ ___________________
+Family                         Poisson             Poisson             Poisson
+S.E. type                 Conley (1km)        Conley (1km)        Conley (1km)
+Observations                    13,384               6,681              13,384
+Squared Cor.                   0.56610             0.57635             0.55551
+Pseudo R2                      0.45422             0.43664             0.45481
+BIC                            8,765.2             7,135.7             6,055.4
+Over-dispersion                     --                  --                  --
+
+                               model 7             model 8             model 9
+                       Cluster commune         Conley 2 km      Distance en km
+Dependent Var.:               n_sirene            n_sirene            n_sirene
+                                                                              
+Constant             -0.6078* (0.2624)   -0.6078* (0.2716)     0.1679 (0.2744)
+log_dist           -0.4135*** (0.0556) -0.4135*** (0.0519)                    
+pop_centaines       0.1364*** (0.0184)  0.1364*** (0.0282)  0.1342*** (0.0218)
+dist_commerce      -0.2520*** (0.0354) -0.2520*** (0.0363) -0.2574*** (0.0316)
+voisins_sirene      0.0114*** (0.0004)  0.0114*** (0.0013)  0.0143*** (0.0016)
+log_dist_ancien                                                               
+log_dist_tous                                                                 
+voisins_osm                                                                   
+dist_site_sans_mem                                         -0.6290*** (0.1570)
+__________________ ___________________ ___________________ ___________________
+Family                         Poisson             Poisson             Poisson
+S.E. type                  by: commune        Conley (2km)        Conley (1km)
+Observations                    13,384              13,384              13,384
+Squared Cor.                   0.56164             0.56164             0.54013
+Pseudo R2                      0.44680             0.44680             0.44220
+BIC                            8,883.7             8,883.7             8,957.2
+Over-dispersion                     --                  --                  --
+---
+Signif. codes: 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1

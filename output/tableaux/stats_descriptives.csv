@@ -1,0 +1,8 @@
+"","moyenne","ecart_type","min","mediane","max"
+"n_sirene",0.16,1.25,0,0,52
+"n_osm",0.1,0.9,0,0,41
+"dist_site_sans_mem",1.73,1.87,0.01,1.28,15.23
+"dist_commerce",9.86,4.71,0.12,9.55,28.39
+"population",46.93,110.18,0,0,3247
+"voisins_sirene",1.24,7.05,0,0,255
+"potentiel",3.5,3.99,0.84,2.55,141.65

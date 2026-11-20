@@ -13,14 +13,21 @@ sites <- st_read("data/clean/sites.gpkg", quiet = TRUE)
 
 # On ne garde que les restaurants actifs au 30/09/2026
 sirene <- filter(sirene, actif)
-nrow(sirene)  # 2268 attendus
+nrow(sirene)  # 2268 actifs
+
+# On retire les adresses empilées : 5 restaurants ou plus au même point GPS.
+# Ce sont des adresses de domiciliation (surtout restauration rapide créée en 2024-2026),
+# pas de vrais restaurants (18 points, 186 établissements).
+nb_meme_point <- table(sirene$geo)
+sirene <- filter(sirene, geo %in% names(nb_meme_point)[nb_meme_point < 5])
+nrow(sirene)  # 2082 attendus
 
 # 1. Nombre de restaurants par carreau
 carreaux$n_sirene <- lengths(st_intersects(carreaux, sirene))
 carreaux$n_osm <- lengths(st_intersects(carreaux, osm))
 
 # Vérifications
-sum(carreaux$n_sirene)  # proche de 2268
+sum(carreaux$n_sirene)  # proche de 2082
 sum(carreaux$n_osm)     # proche de 1292
 mean(carreaux$n_sirene == 0)  # part des carreaux sans restaurant
 summary(carreaux$n_sirene)
