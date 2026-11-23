@@ -241,9 +241,16 @@ Résultats complets et interprétation dans `interpretation_resultats.md`. Ici, 
 
 ---
 
-## 9. À venir
+## 9. Slides et rendu (23/11)
 
-- **Slides** (rendu le lundi 23/11 à 23h59) : 5 parties des consignes, à partir de `interpretation_resultats.md`.
-- **Reproductibilité** : chaîne 01 → 05 sur une session R vierge et chez Nassim.
-- **Données à rendre** : `data/raw` pèse 1,6 Go.
-- **Oral** (26/11) : chacun doit maîtriser tout le projet.
+**Slides.** 14 slides dans `slides/`, relues et corrigées. Les corrélations de la slide 7 (sens des biais) sont calculées avec le log de la distance, comme dans le modèle : 0,54 avec la distance au centre, −0,40 avec le potentiel. Les anciennes valeurs (0,68 et −0,24) venaient de la distance en km. Le texte à dire par slide est dans `slides/texte_oral.md`.
+
+**Reproductibilité.** Aucun script ne télécharge de données : OSM est relu depuis les fichiers `.osm` sauvegardés le 17/11 et le géocodage Mérimée depuis un fichier en cache. Les résultats ne dépendent donc pas de la date d'exécution. La chaîne 01 → 05, lancée dans un dossier neuf et des sessions R vierges, redonne exactement les mêmes tableaux. Les derniers chiffres des slides qui n'étaient calculés nulle part (1 % des carreaux = 51 % des restaurants, corrélations) ont été ajoutés dans `04_modeles.R`.
+
+**Rendu.** Un zip de 395 Mo : le PDF, les 5 scripts et les 10 fichiers bruts utilisés. Envoyé le 23/11.
+
+---
+
+## 10. À venir
+
+- **Oral** (26/11, 10h40, salle 304) : répartir la parole, répéter en 15 minutes, chacun doit maîtriser tout le projet.

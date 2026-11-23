@@ -50,9 +50,9 @@ Règle : biais = effet de Z sur Y × lien Z–X.
 | Contrôle Z | Effet de Z sur Y | Lien de Z avec la distance | Biais attendu sans Z | Observé (coef. de `log_dist`) |
 | --- | --- | --- | --- | --- |
 | Population | + | faible | Faible | −1,18 → −1,08 : presque rien |
-| Centralité (place du Commerce) | − | + (corr. 0,68) | Distance trop négative | −1,08 → −0,69 (−36 %) |
+| Centralité (place du Commerce) | − | + (corr. 0,54, avec ln distance) | Distance trop négative | −1,08 → −0,69 (−36 %) |
 | Restaurants voisins | + | − | Distance trop négative | −0,69 → −0,41 (−40 %) |
-| Potentiel et EF commune | + | − (−0,24) | Distance trop négative | −0,41 → −0,32 |
+| Potentiel et EF commune | + | − (corr. −0,40) | Distance trop négative | −0,41 → −0,32 |
 
 Les facteurs de confusion importants sont la centralité et la densité de restaurants autour, pas la population.
 

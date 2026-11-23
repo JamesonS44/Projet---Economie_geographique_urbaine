@@ -1,4 +1,4 @@
-# Avancement du projet (mis à jour le 20/11/2026)
+# Avancement du projet (mis à jour le 23/11/2026)
 
 Restaurants et sites touristiques, Nantes Métropole, carreaux de 200 m. Binôme : Jameson + Nassim.
 Consignes finales (validées, ne changeront plus) : `docs/consignes_finales.pdf`. **Il n'y a pas de dossier écrit à rendre.**
@@ -11,12 +11,12 @@ Consignes finales (validées, ne changeront plus) : `docs/consignes_finales.pdf`
 | **Lundi 23/11/2026, 23h59** | Rendu : slides PDF + scripts + données |
 | **Jeudi 26/11/2026, 10h40-11h00** | Oral, salle 304 : 15 min de présentation + 5 min de questions |
 
-Les modèles sont finis (20/11). Il reste les slides, la reproductibilité et l'oral.
+**Rendu envoyé le 23/11** (slides PDF + scripts + données dans `projet_eco_geo_nantes.zip`). Il reste l'oral.
 
 ## Ce qu'il faut rendre (le 23/11 à 23h59)
-- [ ] Les slides en PDF, nommées `JamesonSAUSSEREAU_NassimIKHELEF.pdf` (format `PrenomNOM1_PrenomNOM2.pdf`)
-- [ ] Les scripts de code, reproductibles et commentés (01 à 05)
-- [ ] Les données utilisées. Attention : `data/raw` pèse 1,6 Go et `data/clean` 9 Mo. Il faut choisir ce qu'on rend et comment (lien de téléchargement, ou seulement les données propres plus les URL de `DATES.txt` ?)
+- [x] Les slides en PDF, nommées `JamesonSAUSSEREAU_NassimIKHELEF.pdf` (format `PrenomNOM1_PrenomNOM2.pdf`)
+- [x] Les scripts de code, reproductibles et commentés (01 à 05)
+- [x] Les données utilisées : les 10 fichiers de `data/raw` lus par les scripts (Filosofi métropole seule), zip de 395 Mo avec le PDF et les scripts
 
 ## Critères d'évaluation (consignes finales)
 
@@ -39,9 +39,9 @@ Les modèles sont finis (20/11). Il reste les slides, la reproductibilité et l'
 | 4. Variables spatiales (02) | Fait (200 m dans 02, 500 m dans 05) |
 | 5. Cartes (03 + 04) | Fait : 8 cartes |
 | 6. Modèles (04 + 05) | Fait (20/11) |
-| 7. Code et reproductibilité | À faire |
-| 8. Slides | À faire, **priorité** |
-| 9. Oral | À faire |
+| 7. Code et reproductibilité | Fait (23/11) |
+| 8. Slides | Fait, rendues le 23/11 |
+| 9. Oral | À faire, **priorité** |
 
 ## 1. Cadrage (fait)
 - [x] Consigne reçue (24/09)
@@ -100,11 +100,11 @@ Résultats clés :
 - Potentiel de fréquentation **non significatif**
 
 ## 7. Code et reproductibilité
-- [ ] La chaîne 01 → 02 → 03 → 04 → 05 s'exécute du début à la fin sans intervention, sur une session R vierge
-- [ ] Tous les chiffres, cartes et tableaux des slides sortent des scripts (rien n'est calculé à la main)
+- [x] La chaîne 01 → 02 → 03 → 04 → 05 s'exécute du début à la fin sans intervention, sur une session R vierge (23/11, zip testé dans un dossier neuf : tableaux identiques à l'octet ; aucun téléchargement, OSM et géocodage lus dans `data/raw`)
+- [x] Tous les chiffres, cartes et tableaux des slides sortent des scripts (23/11 : top 1 % et corrélations ajoutés dans 04)
 - [x] Packages chargés en tête de chaque script ; seul le chemin d'accès est à adapter
 - [x] Étapes principales commentées (23/11 : nettoyage de Nassim repris, commentaires courts, sans bandeaux ni `cat()`, code inchangé vérifié)
-- [ ] Tester la chaîne sur l'ordinateur de Nassim (vrai test de reproductibilité)
+- [ ] Option : tester le zip sur l'ordinateur de Nassim (seul risque restant : versions de packages, surtout fixest)
 
 ## 8. Slides (PDF, 15 min), priorité
 Structure conseillée par les consignes :
@@ -114,12 +114,12 @@ Structure conseillée par les consignes :
 - [x] 3. Méthodologie : PPML, 5 colonnes, Conley ; variables omises ; causalité inverse (slides 6-8)
 - [x] 4. Résultats : tableau des effets, H2/H3, robustesse, résidus (slides 9-12)
 - [x] 5. Limites et conclusion (slides 13-14)
-- [ ] Relecture par Jameson et Nassim, retouches
+- [x] Relecture et retouches (23/11 : 7 corrections + corrélations de la slide 7 en log, 0,54 et −0,40)
 - [ ] Option : cartes sans titre ggplot (retoucher 03 et 04)
-- [ ] Déposer le PDF final avant 23h59
+- [x] PDF final déposé le 23/11
 
 ## 9. Oral (26/11, 10h40)
-- [ ] Répartition de la parole entre Jameson et Nassim
+- [ ] Répartition de la parole entre Jameson et Nassim : texte complet par slide dans `slides/texte_oral.md`, à attribuer
 - [ ] Répétition chronométrée : 15 min maximum
 - [ ] Chacun maîtrise tout le projet, y compris la partie de l'autre (01-02 et 04-05 pour Nassim, 03 pour Jameson)
 - [ ] Questions probables : pourquoi pas de VI, causalité inverse, causalité des voisins, choix des sites, mémoriaux, adresses empilées, fréquentation non significative, effet plus faible à 500 m
