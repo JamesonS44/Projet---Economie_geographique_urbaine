@@ -102,19 +102,21 @@ Résultats clés :
 ## 7. Code et reproductibilité
 - [ ] La chaîne 01 → 02 → 03 → 04 → 05 s'exécute du début à la fin sans intervention, sur une session R vierge
 - [ ] Tous les chiffres, cartes et tableaux des slides sortent des scripts (rien n'est calculé à la main)
-- [ ] Packages chargés en tête de chaque script ; seul le chemin d'accès est à adapter
-- [ ] Étapes principales commentées : import et nettoyage, construction des variables, estimations, production des résultats
+- [x] Packages chargés en tête de chaque script ; seul le chemin d'accès est à adapter
+- [x] Étapes principales commentées (23/11 : nettoyage de Nassim repris, commentaires courts, sans bandeaux ni `cat()`, code inchangé vérifié)
 - [ ] Tester la chaîne sur l'ordinateur de Nassim (vrai test de reproductibilité)
 
 ## 8. Slides (PDF, 15 min), priorité
 Structure conseillée par les consignes :
-- [ ] 1. Introduction : contexte, question de recherche, mécanismes économiques, hypothèses H1 à H3
-- [ ] 2. Données : sources, construction des variables géographiques, statistiques descriptives, carte(s), adresses empilées retirées
-- [ ] 3. Méthodologie : modèle (`fepois`, NB en robustesse), justification des variables, Conley ; biais de variable omise (tableau du sens des biais, section 3 de l'interprétation) et causalité inverse
-- [ ] 4. Résultats : tableau des 5 colonnes, interprétation des coefficients, robustesse
-- [ ] 5. Discussion et conclusion : limites et réponse à la question
-- [ ] Choix des 2-3 cartes et du tableau principal
-- [ ] Mise en forme, export PDF au bon nom
+**23/11 : version 1 faite** dans `slides/` (14 slides, style « éditorial + cartes ») : `JamesonSAUSSEREAU_NassimIKHELEF.pptx` et `.pdf`, points à dire dans `slides/a_dire_par_slide.md`.
+- [x] 1. Introduction : question, mécanismes, H1 à H3 (slide 2)
+- [x] 2. Données : sources et nettoyage, carte des restaurants, carte des sites et de la distance (slides 3-5)
+- [x] 3. Méthodologie : PPML, 5 colonnes, Conley ; variables omises ; causalité inverse (slides 6-8)
+- [x] 4. Résultats : tableau des effets, H2/H3, robustesse, résidus (slides 9-12)
+- [x] 5. Limites et conclusion (slides 13-14)
+- [ ] Relecture par Jameson et Nassim, retouches
+- [ ] Option : cartes sans titre ggplot (retoucher 03 et 04)
+- [ ] Déposer le PDF final avant 23h59
 
 ## 9. Oral (26/11, 10h40)
 - [ ] Répartition de la parole entre Jameson et Nassim
