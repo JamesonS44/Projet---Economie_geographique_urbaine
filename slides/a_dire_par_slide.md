@@ -54,7 +54,7 @@ Environ 1 min par slide. Repères, pas de phrases à lire.
 ## 7. Biais de variable omise (1 min 15)
 - Règle : biais = effet de Z sur Y × lien Z–distance
 - Population : lien faible avec la distance → biais faible (−1,18 → −1,08)
-- Centralité : centre = moins de restaurants quand on s'en éloigne, et sites concentrés au centre (corr. 0,68) → sans elle, distance trop négative (−1,08 → −0,69)
+- Centralité : centre = moins de restaurants quand on s'en éloigne, et sites concentrés au centre (corr. 0,54) → sans elle, distance trop négative (−1,08 → −0,69)
 - Voisins : + sur Y, − avec la distance → distance trop négative (−0,69 → −0,41)
 - Potentiel + EF commune : même sens (−0,41 → −0,32)
 - Les 4 corrections vont dans le sens prévu

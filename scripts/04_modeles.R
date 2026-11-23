@@ -76,6 +76,16 @@ stats_desc
 dir.create("output/tableaux", showWarnings = FALSE)
 write.csv(stats_desc, "output/tableaux/stats_descriptives.csv")
 
+# Part des restaurants dans le 1 % de carreaux qui en ont le plus
+n_trie <- sort(donnees$n_sirene, decreasing = TRUE)
+sum(n_trie[1:ceiling(0.01 * nrow(donnees))]) / sum(n_trie)
+# 51 % des restaurants dans 1 % des carreaux
+
+# Lien entre la distance au site (en log) et les contrôles, pour le sens des biais
+cor(donnees$log_dist, donnees$dist_commerce)
+cor(donnees$log_dist, donnees$potentiel)
+# 0,54 avec la distance au centre, -0,40 avec le potentiel
+
 # 2. Modèles principaux
 # PPML (fepois) : convergent malgré les nombreux zéros et la surdispersion.
 # Erreurs-types de Conley (1 km) : corrélation spatiale entre carreaux proches.
